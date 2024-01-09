@@ -1,7 +1,7 @@
 
 // Another One Obstacle Avoiding Robot
 // inpired from varius Obstacle Avoiding Robots in Arduino Project Hub.
-// works with DFROBOT DRI004 dual motor driver, and the usual stuff, SG90 servo, HC-SR04 Ultrasonic Distance Sensor 
+// works with DFROBOT DRI0044 dual motor driver, and the usual stuff, SG90 servo, HC-SR04 Ultrasonic Distance Sensor 
 // required libraries - Servo for the servo, NewPing for the Ultrasonic sensor
 
 //TODO ArduinoBlue https://sites.google.com/stonybrook.edu/arduinoble or https://play.google.com/store/apps/details?id=com.shevauto.remotexy.pro
