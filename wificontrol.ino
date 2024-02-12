@@ -1,7 +1,7 @@
 //use esp-01 with level converter for rx/tx
 #include <ESP8266WiFi.h>
 const char* ssid = "xxxxx";//type your ssid
-const char* password = "xxxxxx";//type your password
+const char* password = "xxxxxxx";//type your password
 
 WiFiServer server(80);
 
@@ -55,11 +55,11 @@ void loop() {
   if (request.indexOf("/right") != -1){
    Serial.print("r");
   }
-  if (request.indexOf("/up") != -1) {
-   Serial.print("u");
+  if (request.indexOf("/forward") != -1) {
+   Serial.print("f");
   } 
-  if (request.indexOf("/down") != -1){
-   Serial.print("d");
+  if (request.indexOf("/backward") != -1){
+   Serial.print("b");
   }
   if (request.indexOf("/stop") != -1){
    Serial.print("s");
