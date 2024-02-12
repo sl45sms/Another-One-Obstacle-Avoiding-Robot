@@ -6,6 +6,7 @@
 
 //TODO ArduinoBlue https://sites.google.com/stonybrook.edu/arduinoble or https://play.google.com/store/apps/details?id=com.shevauto.remotexy.pro
 
+//gets serial commands from robot_wifi_commands (left,right,up,down)
 
 #include <NewPing.h>
 #include <Servo.h> 
@@ -26,6 +27,9 @@
 
 NewPing sonar(TRIG_PIN, ECHO_PIN,  MAX_DISTANCE); 
 
+char serialCommand;
+int explore = 0;
+
 Servo  myservo;   
 
 boolean goesForward=false;
@@ -33,7 +37,7 @@ int distance = 100;
 int speedSet  = 0;
 
 void setup() {
-
+  Serial.begin(9600);
   myservo.attach(SERVO_PIN);  
   myservo.write(SERVO_LOOK_F);
   delay(2000);
@@ -48,10 +52,52 @@ void setup() {
 }
 
 void loop() {
+
+    //check if there is a left,right,up,down,stop,explore command await on serial.
+    while (Serial.available() > 0){
+       delay(10);  //delay to allow buffer to fill 
+    if (Serial.available() >0) {
+      serialCommand = Serial.read();  //gets one byte from serial buffer
+    if (serialCommand=='l'){
+      turnLeft();
+      moveForward();
+      delay(200);
+    }
+    if (serialCommand=='r')
+    {
+      turnRight();
+      moveForward();
+      delay(200);
+    }
+    if (serialCommand=='u')
+    {
+      moveForward();
+      delay(200);
+    }
+    if (serialCommand=='d')
+    {
+      moveBackward();
+      delay(200);
+    }
+    if (serialCommand=='e')
+    {
+      explore=1;
+      moveForward();
+    }
+    if (serialCommand=='s'){
+      explore=0;
+      moveStop();
+    }
+   serialCommand="";
+  } else {
+    moveForward();
+  }
+    }
  int distanceR = 0;
-  int distanceL =  0;
- delay(40);
+ int distanceL =  0;
+ delay(30);
  
+ if (explore == 1) {
  if(distance<=15)
  {
   moveStop();
@@ -79,6 +125,7 @@ void loop() {
   moveForward();
   }
  distance = readPing();
+ }
 }
 
 int lookRight()
