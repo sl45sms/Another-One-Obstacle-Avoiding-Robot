@@ -69,12 +69,12 @@ void loop() {
       moveForward();
       delay(200);
     }
-    if (serialCommand=='u')
+    if (serialCommand=='f')
     {
       moveForward();
       delay(200);
     }
-    if (serialCommand=='d')
+    if (serialCommand=='b')
     {
       moveBackward();
       delay(200);
