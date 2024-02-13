@@ -71,6 +71,7 @@ void loop() {
     }
     if (serialCommand=='f')
     {
+      goesForward=false;
       moveForward();
       delay(200);
     }
